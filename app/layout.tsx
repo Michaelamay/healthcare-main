@@ -12,11 +12,9 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  title: "Zealthy",
-  description: "A demo for assesstment",
-  /*   icons: {
-    icon: "/assets/icons/logo-icon.svg",
-  }, */
+  title: "Healthcare App",
+  description: "A Healthcare Management System Application Demo",
+
 };
 
 export default function RootLayout({
