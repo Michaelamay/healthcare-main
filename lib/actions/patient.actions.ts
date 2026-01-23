@@ -1,8 +1,9 @@
 'use server';
 
 import { ID, Query } from "node-appwrite"
-import {users} from "../appwrite.config"
+import {BUCKET_ID, DATABASE_ID, databases, ENDPOINT, PATIENT_COLLECTION_ID, PROJECT_ID, storage, users} from "../appwrite.config"
 import { parseStringify } from "../utils";
+import { InputFile } from "node-appwrite/file";
 
 export const createUser = async (user: CreateUserParams) => {
     try{
@@ -37,6 +38,43 @@ export const getUser = async (userId: string) => {
 
     } catch(error){
         console.log(error)
+    }
+
+}
+
+export const registerPatient = async ({identificationDocument, ...patient}: RegisterUserParams) => {
+
+    console.log("Inside patient.actions.ts registerPatient method");
+    
+    try{
+        let file;
+
+        if(identificationDocument){
+            const inputFile = InputFile.fromBuffer(
+                identificationDocument?.get('blobFile') as Blob,
+                identificationDocument?.get('fileName') as string,
+            )
+
+            file = await storage.createFile("696678370015a4d5a7bf", ID.unique(), inputFile)
+        }
+
+        const newPatient = await databases.createDocument (
+            "6966766b000120b3fe77",
+            "patient",
+            ID.unique(),
+            {
+                identificationDocumentId: file?.$id || null,
+                //identificationDocumentUrl: `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${file?.$id}/view?project=${PROJECT_ID}`,
+                identificationDocumentUrl: `https://nyc.cloud.appwrite.io/v1/storage/buckets/696678370015a4d5a7bf/files/${file?.$id}/view?project=696674c90025900c2b78`,
+
+                ...patient
+            }
+
+        )
+        return parseStringify(newPatient);
+        
+    } catch (error){
+        console.log(error);
     }
 
 }

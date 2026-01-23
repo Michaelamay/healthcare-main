@@ -20,24 +20,10 @@ import { useState } from "react"
 import { UserFormValidation } from "@/lib/validation"
 import { useRouter } from "next/navigation"
 import { createUser } from "@/lib/actions/patient.actions"
+import { FormFieldType } from "./PatientForm"
 
-export enum FormFieldType {
-    INPUT = 'input',
-    TEXTAREA = 'textarea',
-    PHONE_INPUT = 'phoneInput',
-    CHECKBOX = 'checkbox',
-    DATE_PICKER = '',
-    SELECT = 'select',
-    SKELETON = 'skeleton'
-}
 
-const formSchema = z.object({
-  name: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-})
-
-const PatientForm = () => {
+const AppointmentForm = () => {
 
   const router = useRouter();
 
@@ -80,8 +66,8 @@ const PatientForm = () => {
     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 flex-1">
       
         <section className="mb-12 space-y-4">
-            <h1 className="header">Welcome</h1>
-            <p className="text-dark-700">Schedule your appointment.</p>
+            <h1 className="header">New Appointment</h1>
+            <p className="text-dark-700">Request a new appointment.</p>
         </section>
 
         <CustomFormField 
@@ -121,4 +107,4 @@ const PatientForm = () => {
 
 }
 
-export default PatientForm
+export default AppointmentForm
