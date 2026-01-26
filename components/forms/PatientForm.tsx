@@ -20,6 +20,9 @@ import { useState } from "react"
 import { UserFormValidation } from "@/lib/validation"
 import { useRouter } from "next/navigation"
 import { createUser } from "@/lib/actions/patient.actions"
+import { getRandomValues } from "crypto"
+
+//THIS IS THE FIRST PAGE; THE WELCOME PAGE Patient Form
 
 export enum FormFieldType {
     INPUT = 'input',
@@ -54,7 +57,7 @@ const PatientForm = () => {
   })
 
   // 2. Define a submit handler.
-  async function onSubmit({name,email,phone}: z.infer<typeof UserFormValidation>) {
+  async function onSubmit(values: z.infer<typeof UserFormValidation>) {
 
     console.log("Inside PatientForm.tsx onSubmit async function");
 
@@ -64,7 +67,11 @@ const PatientForm = () => {
 
         console.log("Inside PatientForm.tsx onSubmit try")
 
-        const userData = {name,email,phone};
+        const userData = {
+          name: values.name,
+          email: values.email,
+          phone: values.phone,
+        };
 
         const user = await createUser(userData);
         

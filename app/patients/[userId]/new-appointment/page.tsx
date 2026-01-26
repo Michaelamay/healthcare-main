@@ -3,6 +3,9 @@ import healthLogo from '@/public/assets/icons/health-logo.svg';
 import medicalStethoscope from '@/public/assets/images/medical-banner-with-stethoscope.jpg'
 import PatientForm from "@/components/forms/PatientForm";
 import AppointmentForm from "@/components/forms/AppointmentForm";
+import { getPatient } from "@/lib/actions/patient.actions";
+
+//THIS IS THE THIRD PAGE Appointment SKELETON;
 
 export default async function NewAppointment({params: {userId}} : SearchParamProps) {
     
@@ -23,11 +26,11 @@ export default async function NewAppointment({params: {userId}} : SearchParamPro
           <AppointmentForm
             type="create"
             userId={userId}
-          
+            patientId={patient.$id}
           />  
 
           
-        <p className="justify-items-end text-dark-600 xl:text-left">
+        <p className="copyright mt-10 py-12">
             © Michaels Healthcare App Management System Demo
         </p>
          
@@ -45,4 +48,4 @@ export default async function NewAppointment({params: {userId}} : SearchParamPro
   )
 };
 
-//export default Home;
+

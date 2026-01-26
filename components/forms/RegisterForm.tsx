@@ -28,6 +28,8 @@ import Image from "next/image";
 import FileUploader from "../ui/FileUploader"
 import { getRandomValues } from "crypto"
 
+//THIS IS THE SECOND PAGE; THE REGISTRATION FORM
+
 export enum FormFieldType {
     INPUT = 'input',
     TEXTAREA = 'textarea',
@@ -46,14 +48,14 @@ const RegisterForm = ({user}: {user: User}) => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  // 1. Define your form.
+  
   const form = useForm<z.infer<typeof PatientFormValidation>>({
     resolver: zodResolver(PatientFormValidation),
     defaultValues: {
       ...PatientFormDefaultValues,
-      name: "",
-      email: "",
-      phone: "",
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
     },
   });
 

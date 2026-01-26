@@ -42,6 +42,23 @@ export const getUser = async (userId: string) => {
 
 }
 
+export const getPatient = async (userId: string) => {
+
+    try{
+        const patients = await databases.listDocuments(
+            "6966766b000120b3fe77",
+            "patient",
+            [Query.equal('userId',userId)]
+        );
+
+        return parseStringify(patients.documents[0]);
+
+    } catch(error){
+        console.log(error)
+    }
+
+}
+
 export const registerPatient = async ({identificationDocument, ...patient}: RegisterUserParams) => {
 
     console.log("Inside patient.actions.ts registerPatient method");

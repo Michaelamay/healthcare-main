@@ -3,6 +3,8 @@ import healthLogo from '@/public/assets/icons/health-logo.svg';
 import medicalStethoscope from '@/public/assets/images/medical-banner-with-stethoscope.jpg'
 import PatientForm from "@/components/forms/PatientForm";
 
+//THIS IS THE FIRST PAGE; THE WELCOME PAGE SKELETON
+
 export default function Home() {
   return (
     <div className="flex h-screen max-h-screen">

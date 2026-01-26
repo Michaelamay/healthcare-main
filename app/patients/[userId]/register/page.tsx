@@ -3,6 +3,8 @@ import Image from 'next/image'
 import RegisterForm from '@/components/forms/RegisterForm'
 import {getUser} from '@/lib/actions/patient.actions'
 
+//THIS IS THE SECOND PAGE, THE REGISTER FORM SKELETON.
+
 const Register = async ({params: {userId}}: SearchParamProps) => {
 
     const user = await getUser(userId);
