@@ -50,11 +50,6 @@ export const getPatient = async (userId: string) => {
 
     try{
 
-/*         const patients = await databases.listDocuments(
-            "6966766b000120b3fe77",
-            "patient",
-            [Query.equal('userId',userId)]
-        ); */
         const patients = await databases.listDocuments(
             DATABASE_ID!,
             PATIENT_COLLECTION_ID!,

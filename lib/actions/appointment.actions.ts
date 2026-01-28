@@ -11,14 +11,6 @@ export const createAppointment = async (appointment: CreateAppointmentParams) =>
         
         console.log("Inside createAppointment const");
 
-/*         const newAppointment = await databases.createDocument (
-            "6966766b000120b3fe77",
-            "appointment",
-            ID.unique(),
-            appointment,
-
-        ) */
-
         const newAppointment = await databases.createDocument (
                 DATABASE_ID!,
                 APPOINTMENT_COLLECTION_ID!,
