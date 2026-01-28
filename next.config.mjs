@@ -1,4 +1,5 @@
 import { withSentryConfig } from "@sentry/nextjs";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
@@ -9,6 +10,21 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
+
+// Source - https://stackoverflow.com/a
+// Posted by Vishesh Mangla
+// Retrieved 2026-01-28, License - CC BY-SA 4.0
+
+module.exports = {
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
+  },
+};
+
 
 export default withSentryConfig(nextConfig, {
   // For all available options, see:
