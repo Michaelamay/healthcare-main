@@ -2,6 +2,7 @@ import { withSentryConfig } from "@sentry/nextjs";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  
   eslint: {
     // This option allows Next.js to produce production code even with ESLint errors.
     // Use with caution.
