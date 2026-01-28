@@ -6,16 +6,7 @@ const nextConfig = {
     // This option allows Next.js to produce production code even with ESLint errors.
     // Use with caution.
     ignoreDuringBuilds: true,
-  }
-};
-
-module.exports = nextConfig;
-
-// Source - https://stackoverflow.com/a
-// Posted by Vishesh Mangla
-// Retrieved 2026-01-28, License - CC BY-SA 4.0
-
-module.exports = {
+  },
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if
@@ -26,6 +17,11 @@ module.exports = {
 };
 
 
+export default nextConfig;
+
+
+
+/* 
 export default withSentryConfig(nextConfig, {
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options
@@ -59,4 +55,4 @@ export default withSentryConfig(nextConfig, {
   // https://docs.sentry.io/product/crons/
   // https://vercel.com/docs/cron-jobs
   automaticVercelMonitors: true,
-});
+}); */
