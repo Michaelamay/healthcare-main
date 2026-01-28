@@ -248,7 +248,7 @@ const RegisterForm = ({user}: {user: User}) => {
                 control={form.control}
                 name="primaryPhysician"
                 label="Primary Physician"
-                placeholder="Select a physician"
+                placeholder="Select a physician (e.g. Dr. Michael Amay)"
         > 
         {Doctors.map((doctor) =>(
           <SelectItem key={doctor.name} value={doctor.name}>

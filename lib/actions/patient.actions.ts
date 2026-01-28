@@ -5,6 +5,7 @@ import {BUCKET_ID, DATABASE_ID, databases, ENDPOINT, PATIENT_COLLECTION_ID, PROJ
 import { parseStringify } from "../utils";
 import { InputFile } from "node-appwrite/file";
 
+
 export const createUser = async (user: CreateUserParams) => {
     try{
 
@@ -44,10 +45,19 @@ export const getUser = async (userId: string) => {
 
 export const getPatient = async (userId: string) => {
 
+    console.log("Inside getPatient method.Database Id: ", DATABASE_ID);
+    console.log("Inside getPatient method. Patient collection Id: ", PATIENT_COLLECTION_ID);
+
     try{
-        const patients = await databases.listDocuments(
+
+/*         const patients = await databases.listDocuments(
             "6966766b000120b3fe77",
             "patient",
+            [Query.equal('userId',userId)]
+        ); */
+        const patients = await databases.listDocuments(
+            DATABASE_ID!,
+            PATIENT_COLLECTION_ID!,
             [Query.equal('userId',userId)]
         );
 
@@ -62,6 +72,11 @@ export const getPatient = async (userId: string) => {
 export const registerPatient = async ({identificationDocument, ...patient}: RegisterUserParams) => {
 
     console.log("Inside patient.actions.ts registerPatient method");
+    console.log("Inside registerPatient method.Database Id: ", DATABASE_ID);
+    console.log("Inside registerPatient method. Patient collection Id: ", PATIENT_COLLECTION_ID);
+    console.log("Inside registerPatient method. Bucket Id: ", BUCKET_ID);
+    console.log("Inside registerPatient method. Endpoint: ", ENDPOINT);
+    console.log("Inside registerPatient method. Project Id: ", PROJECT_ID);
     
     try{
         let file;
@@ -72,10 +87,11 @@ export const registerPatient = async ({identificationDocument, ...patient}: Regi
                 identificationDocument?.get('fileName') as string,
             )
 
-            file = await storage.createFile("696678370015a4d5a7bf", ID.unique(), inputFile)
+            //file = await storage.createFile("696678370015a4d5a7bf", ID.unique(), inputFile)
+            file = await storage.createFile(BUCKET_ID!, ID.unique(), inputFile)
         }
 
-        const newPatient = await databases.createDocument (
+/*         const newPatient = await databases.createDocument (
             "6966766b000120b3fe77",
             "patient",
             ID.unique(),
@@ -87,7 +103,21 @@ export const registerPatient = async ({identificationDocument, ...patient}: Regi
                 ...patient
             }
 
+        ) */
+        const newPatient = await databases.createDocument (
+            DATABASE_ID!,
+            PATIENT_COLLECTION_ID!,
+            ID.unique(),
+            {
+                identificationDocumentId: file?.$id || null,
+                identificationDocumentUrl: `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${file?.$id}/view?project=${PROJECT_ID}`,
+                //identificationDocumentUrl: `https://nyc.cloud.appwrite.io/v1/storage/buckets/696678370015a4d5a7bf/files/${file?.$id}/view?project=696674c90025900c2b78`,
+
+                ...patient
+            }
+
         )
+
         return parseStringify(newPatient);
         
     } catch (error){
