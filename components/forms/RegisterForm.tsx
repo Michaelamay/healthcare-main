@@ -101,13 +101,10 @@ const RegisterForm = ({user}: {user: User}) => {
         identificationDocument: values.identificationDocument
           ? formData
           : undefined,
-        privacyConsent: values.privacyConsent,
+        
         treatmentConsent: values.treatmentConsent,
-        disclosureConsent: values.disclosureConsent,
+        
       }  
-      
-      
-      
       const newPatient = await registerPatient(patientData);
 
       console.log("newPatient" + newPatient);
@@ -206,7 +203,7 @@ const RegisterForm = ({user}: {user: User}) => {
                 fieldType={FormFieldType.INPUT}
                 control={form.control}
                 name="address"
-                label="Address"
+                label="Address*"
                 placeholder="89 Kingston Ave, Brookyln"
             />
 
@@ -215,7 +212,7 @@ const RegisterForm = ({user}: {user: User}) => {
                 control={form.control}
                 name="occupation"
                 label="Occupation"
-                placeholder="Software Engineer"
+                placeholder="Junior Software Engineer"
             />
         </div>
 
@@ -247,7 +244,7 @@ const RegisterForm = ({user}: {user: User}) => {
                 fieldType={FormFieldType.SELECT}
                 control={form.control}
                 name="primaryPhysician"
-                label="Primary Physician"
+                label="Primary Physician*"
                 placeholder="Select a physician (e.g. Dr. Michael Amay)"
         > 
         {Doctors.map((doctor) =>(
@@ -272,7 +269,7 @@ const RegisterForm = ({user}: {user: User}) => {
                   fieldType={FormFieldType.INPUT}
                   control={form.control}
                   name="insuranceProvider"
-                  label="Insurance provider"
+                  label="Insurance provider*"
                   placeholder="BlueCross BlueShield"
               />
 
@@ -369,9 +366,9 @@ const RegisterForm = ({user}: {user: User}) => {
                 fieldType={FormFieldType.CHECKBOX}
                 control={form.control}
                 name="treatmentConsent"
-                label="I consent to treatment"
+                label="I consent to treatment*"
             />
-            <CustomFormField
+{/*             <CustomFormField
                 fieldType={FormFieldType.CHECKBOX}
                 control={form.control}
                 name="disclosureConsent"
@@ -382,7 +379,8 @@ const RegisterForm = ({user}: {user: User}) => {
               control={form.control}
               name="privacyConsent"
               label="I acknowledge privacy policy"
-            />
+            /> */}
+
           </section>
         <SubmitButton isLoading={isLoading}>Submit</SubmitButton>
         </form>

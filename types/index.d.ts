@@ -22,12 +22,12 @@ declare type SearchParamProps = {
     birthDate: Date;
     gender: Gender;
     address: string;
-    occupation: string;
-    emergencyContactName: string;
-    emergencyContactNumber: string;
+    occupation: string | undefined;
+    emergencyContactName: string | undefined;
+    emergencyContactNumber: string | undefined;
     primaryPhysician: string;
     insuranceProvider: string;
-    insurancePolicyNumber: string;
+    insurancePolicyNumber: string | undefined;
     allergies: string | undefined;
     currentMedication: string | undefined;
     familyMedicalHistory: string | undefined;
@@ -35,7 +35,7 @@ declare type SearchParamProps = {
     identificationType: string | undefined;
     identificationNumber: string | undefined;
     identificationDocument: FormData | undefined;
-    privacyConsent: boolean;
+    //privacyConsent: boolean | undefined;
   }
   
   declare type CreateAppointmentParams = {

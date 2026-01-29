@@ -82,23 +82,10 @@ export const registerPatient = async ({identificationDocument, ...patient}: Regi
                 identificationDocument?.get('fileName') as string,
             )
 
-            //file = await storage.createFile("696678370015a4d5a7bf", ID.unique(), inputFile)
+            
             file = await storage.createFile(BUCKET_ID!, ID.unique(), inputFile)
         }
 
-/*         const newPatient = await databases.createDocument (
-            "6966766b000120b3fe77",
-            "patient",
-            ID.unique(),
-            {
-                identificationDocumentId: file?.$id || null,
-                //identificationDocumentUrl: `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${file?.$id}/view?project=${PROJECT_ID}`,
-                identificationDocumentUrl: `https://nyc.cloud.appwrite.io/v1/storage/buckets/696678370015a4d5a7bf/files/${file?.$id}/view?project=696674c90025900c2b78`,
-
-                ...patient
-            }
-
-        ) */
         const newPatient = await databases.createDocument (
             DATABASE_ID!,
             PATIENT_COLLECTION_ID!,
@@ -106,7 +93,7 @@ export const registerPatient = async ({identificationDocument, ...patient}: Regi
             {
                 identificationDocumentId: file?.$id || null,
                 identificationDocumentUrl: `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${file?.$id}/view?project=${PROJECT_ID}`,
-                //identificationDocumentUrl: `https://nyc.cloud.appwrite.io/v1/storage/buckets/696678370015a4d5a7bf/files/${file?.$id}/view?project=696674c90025900c2b78`,
+                
 
                 ...patient
             }
